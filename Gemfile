@@ -2,6 +2,7 @@ source "https://rubygems.org"
 
 gem 'aws-sdk-s3', '~> 1.42'
 gem 'jets'
+gem 'mini_magick', '~> 4.9', '>= 4.9.3'
 gem 'pg', '~> 1.1.3'
 gem 'shrine', '~> 2.17', '>= 2.17.1'
 gem 'solid_use_case', '~> 2.2'
