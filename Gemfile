@@ -1,7 +1,9 @@
 source "https://rubygems.org"
 
-gem "jets"
-gem "pg", "~> 1.1.3"
+gem 'aws-sdk-s3', '~> 1.42'
+gem 'jets'
+gem 'pg', '~> 1.1.3'
+gem 'shrine', '~> 2.17', '>= 2.17.1'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
