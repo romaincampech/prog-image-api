@@ -1,4 +1,5 @@
 Jets.application.routes.draw do
-  post 'upload', to: 'images#upload'
-  post 'transform', to: 'images#transform'
+  get  'images/:id',           to: 'images#show'
+  post 'images',               to: 'images#create'
+  post 'images/:id/transform', to: 'image_transformations#create'
 end
