@@ -11,22 +11,10 @@ class ImagesController < ApplicationController
     end
   end
 
-  def upload
-    Images::Upload.run(upload_params).match do
+  def create
+    Images::Create.run(create_params).match do
       success do |image|
-        render json: {
-          id: image.id,
-        }
-      end
-    end
-  end
-
-  def transform
-    Images::Transform.run(transform_params).match do
-      success do |image|
-        render json: {
-          id: image.id,
-        }
+        render_success(ImagesPresenter.new(image))
       end
     end
   end
@@ -37,11 +25,7 @@ class ImagesController < ApplicationController
     params.permit(:id)
   end
 
-  def upload_params
+  def create_params
     params.permit(:file)
-  end
-
-  def transform_params
-    params.permit(:id, specs: [])
   end
 end

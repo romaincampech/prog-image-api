@@ -1,5 +1,5 @@
 module Images
-  class Upload
+  class Create
     include SolidUseCase
 
     steps :create_image
