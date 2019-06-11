@@ -1,11 +1,16 @@
 default: &default
   adapter: postgresql
   encoding: utf8
-  pool: <%= ENV["DB_POOL"] || 5  %>
+  pool: <%= ENV["DB_POOL"] || 5 %>
+  database: <%= ENV["RDS_NAME"] || prog-image-api_development %>
+  username: <%= ENV["RDS_USERNAME"] || ENV["USER"] %>
+  password: <%= ENV["RDS_PASSWORD"] %>
+  host: <%= ENV['RDS_HOSTNAME'] %>
+  url: <%= ENV['RDS_URL'] %>
 
 development:
   <<: *default
-  database: prog-image-api_development
+  database: <%= ENV["RDS_NAME"] || prog-image-api_development %>
 
 test:
   <<: *default
@@ -13,8 +18,5 @@ test:
 
 production:
   <<: *default
-  database: <%= ENV['RDS_DB_NAME'] %>
-  username: <%= ENV['RDS_USERNAME'] %>
-  password: <%= ENV['RDS_PASSWORD'] %>
-  host: <%= ENV['RDS_HOSTNAME'] %>
-  port: <%= ENV['RDS_PORT'] %>
+  database: prog-image-api_production
+  url: <%= ENV['RDS_URL'] %>
