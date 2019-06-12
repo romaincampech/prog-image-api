@@ -1,6 +1,7 @@
 source "https://rubygems.org"
 
 gem 'aws-sdk-s3', '~> 1.42'
+gem 'fastimage', '~> 2.1', '>= 2.1.5'
 gem 'jets'
 gem 'mini_magick', '~> 4.9', '>= 4.9.3'
 gem 'pg', '~> 1.1.3'
@@ -18,4 +19,5 @@ group :test do
   gem 'factory_bot'
   gem 'launchy'
   gem 'rspec'
+  gem 'shrine-memory', '~> 0.3.0'
 end

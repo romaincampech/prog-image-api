@@ -16,6 +16,8 @@ class ImagesPresenter < BasePresenter
       filename: object.file.original_filename,
       url: object.file.url,
       size_bytes: object.file.size,
+      height: object.file.height,
+      width: object.file.width,
       extension: object.file.extension,
       mime_type: object.file.mime_type,
     }

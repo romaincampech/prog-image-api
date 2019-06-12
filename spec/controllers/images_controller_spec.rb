@@ -13,6 +13,8 @@ describe ImagesController, type: :controller do
             'filename' => image.file.original_filename,
             'url' => image.file.url,
             'size_bytes' => image.file.size,
+            'height' => image.file.height,
+            'width' => image.file.width,
             'extension' => image.file.extension,
             'mime_type' => image.file.mime_type,
           },
