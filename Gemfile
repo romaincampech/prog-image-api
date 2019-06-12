@@ -14,7 +14,8 @@ group :development, :test do
 end
 
 group :test do
-  gem 'rspec'
-  gem 'launchy'
   gem 'capybara'
+  gem 'factory_bot'
+  gem 'launchy'
+  gem 'rspec'
 end
