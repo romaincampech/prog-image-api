@@ -22,11 +22,7 @@ module ImageTransformations
     def create_image_transformation(params)
       return continue params[:image_transformation] if params[:image_transformation].present?
 
-      image = MiniMagick::Image.open(params[:original_image].file.url)
-      params[:specs].each do |spec, value|
-        image.send(spec, value)
-      end
-
+      image = build_image(params)
       params[:image_transformation] = ImageTransformation.create!(
                                         original: params[:original_image],
                                         specs: params[:specs].to_h,
@@ -34,6 +30,19 @@ module ImageTransformations
                                       )
 
       continue params[:image_transformation]
+    end
+
+    private
+
+    def build_image(params)
+      image = MiniMagick::Image.open(params[:original_image].file.url)
+
+      whitelisted_specs = params[:specs].slice(*ImageTransformation::SPECS_WHITELIST)
+      whitelisted_specs.each do |spec, value|
+        image.send(spec, value)
+      end
+
+      image
     end
   end
 end
