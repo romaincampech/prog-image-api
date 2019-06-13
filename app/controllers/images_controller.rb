@@ -2,7 +2,7 @@ class ImagesController < ApplicationController
   def show
     Images::Show.run(show_params).match do
       success do |image|
-        render_success(ImagesPresenter.new(image))
+        render_success(ImagePresenter.new(image))
       end
 
       failure :not_found do |error|
@@ -14,7 +14,7 @@ class ImagesController < ApplicationController
   def create
     Images::Create.run(create_params).match do
       success do |image|
-        render_success(ImagesPresenter.new(image))
+        render_success(ImagePresenter.new(image))
       end
 
       failure :unprocessable_entity do |error|

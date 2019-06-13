@@ -1,4 +1,4 @@
-class ImagesPresenter < BasePresenter
+class ImagePresenter < BasePresenter
   def as_json(*)
     {
       image: image,
