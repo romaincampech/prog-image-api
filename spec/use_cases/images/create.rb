@@ -24,7 +24,7 @@ describe Images::Create do
         }.to change{ Image.count }.by(1)
       end
 
-      it 'attachs the file to the new Image' do
+      it 'attaches the file to the new Image' do
         result = described_class.run({ file: param })
 
         expect(result.value.file).to be_a(ImageUploader::UploadedFile)
