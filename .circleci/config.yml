@@ -1,0 +1,37 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/ruby:2.5.3
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - v1-bundle-{{ checksum "Gemfile.lock" }}
+            - v2-bundle-
+
+      - run:
+          name: Install dependencies
+          command: |
+            gem install bundler -v 2.0.2
+            bundle install
+
+      - save_cache:
+          key: v1-bundle-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+      - run:
+          name: DB setup
+          command: jets db:create db:migrate
+
+      - run:
+          name: Run tests
+          command: bundle exec rspec
+
+      - run:
+          name: Deploy
+          command: |
+            sudo apt-get update && sudo apt-get install -y rsync
+            yes Y | JETS_ENV=production jets deploy production || if [ $? -ne '141' ]; then exit $?; fi;  #Captures SIGPIPE 141 error but still allow repeating "Y"
