@@ -7,6 +7,7 @@ module ImageTransformations
           :create_image_transformation
 
     def find_original_image(params)
+      p params
       params[:original_image] = Image.find_by(id: params[:id])
       return fail :not_found, error: 'NOT_FOUND' unless params[:original_image].present?
 
@@ -14,6 +15,7 @@ module ImageTransformations
     end
 
     def find_existing_image_transformation(params)
+      p params[:specs]
       params[:image_transformation] = params[:original_image].transformations.find_by(specs: params[:specs].to_h)
 
       continue params

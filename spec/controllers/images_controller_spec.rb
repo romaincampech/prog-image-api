@@ -26,7 +26,7 @@ describe ImagesController, type: :controller do
     end
 
     context 'when nothing is found' do
-      it 'returns a not_found 404' do
+      it 'returns a :not_found 404' do
         get '/images/:id', id: '00000'
 
         expect(response.status).to eq(404)

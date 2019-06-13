@@ -2,7 +2,7 @@ class ImageTransformationsController < ApplicationController
   def create
     ImageTransformations::Create.run(image_transformation_params).match do
       success do |image|
-        render_success(ImagePresenter.new(image))
+        render_success(ImagePresenter.new(image), :created)
       end
 
       failure :not_found do |error|
