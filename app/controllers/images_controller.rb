@@ -14,7 +14,7 @@ class ImagesController < ApplicationController
   def create
     Images::Create.run(create_params).match do
       success do |image|
-        render_success(ImagePresenter.new(image))
+        render_success(ImagePresenter.new(image), :created)
       end
 
       failure :unprocessable_entity do |error|
