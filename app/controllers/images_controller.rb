@@ -16,6 +16,10 @@ class ImagesController < ApplicationController
       success do |image|
         render_success(ImagesPresenter.new(image))
       end
+
+      failure :unprocessable_entity do |error|
+        render_error(error)
+      end
     end
   end
 
