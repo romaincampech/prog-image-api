@@ -3,5 +3,5 @@ class ImageTransformation < ApplicationRecord
 
   include ImageUploader::Attachment.new(:file)
 
-  SPECS_WHITELIST = %i(format resize rotate)
+  SPECS_WHITELIST = %i(format resize rotate colorspace)
 end

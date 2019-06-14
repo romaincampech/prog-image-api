@@ -14,6 +14,6 @@ class ImageTransformationsController < ApplicationController
   private
 
   def image_transformation_params
-    params.permit(:id, specs: [:format, :resize, :rotate])
+    params.permit(:id, specs: [:format, :resize, :rotate, :colorspace])
   end
 end
